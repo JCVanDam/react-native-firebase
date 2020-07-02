@@ -1,4 +1,4 @@
-package io.invertase.firebase.ml.vision;
+package io.invertase.firebase.ml.custom;
 
 /*
  * Copyright (c) 2016-present Invertase Limited & Contributors

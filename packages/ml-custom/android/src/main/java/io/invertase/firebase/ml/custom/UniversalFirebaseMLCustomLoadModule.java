@@ -1,4 +1,4 @@
-package io.invertase.firebase.ml.vision;
+package io.invertase.firebase.ml.custom;
 
 /*
  * Copyright (c) 2016-present Invertase Limited & Contributors
@@ -36,7 +36,7 @@ class UniversalFirebaseMLCustomLoadModule extends UniversalFirebaseModule {
     super(context, serviceName);
   }
 
-  Task<String> customModelLoadModel(
+  Task<Void> customModelLoadModel(
     String appName,
     String modelName
   ) {
@@ -49,8 +49,6 @@ class UniversalFirebaseMLCustomLoadModule extends UniversalFirebaseModule {
               .requireWifi()
               .build();
 
-      System.out.println("juste avant le telechargement");
-
       FirebaseModelManager.getInstance().download(remoteModel, conditions)
               .addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
@@ -58,7 +56,7 @@ class UniversalFirebaseMLCustomLoadModule extends UniversalFirebaseModule {
                   System.out.println("model téléchargé");
                 }
               });
-      return "ok";
+      return null;
     });
   }
 

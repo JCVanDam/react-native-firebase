@@ -58,7 +58,7 @@ export namespace FirebaseVisionTypes {
 
   export class Module extends FirebaseModule {
 
-    customModelLoadModel(modelName: string): String;
+    customModelLoadModel(modelName: string): Void;
     /**
      * Detects faces from a local image file.
      *

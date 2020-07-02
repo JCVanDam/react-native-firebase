@@ -22,7 +22,7 @@ import {
 } from '@react-native-firebase/app/lib/internal';
 import version from './version';
 
-const namespace = 'vision2';
+const namespace = 'customML';
 const nativeModuleName = [
   'RNFBMLCustomLoadModule',
 ];
