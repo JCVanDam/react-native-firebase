@@ -24,12 +24,13 @@ import version from './version';
 
 const namespace = 'customML';
 const nativeModuleName = [
-  'RNFBMLCustomLoadModule',
+  'RNFBMLCustomLoadModule'
 ];
 
 class FirebaseMlKitCustomModule extends FirebaseModule {
 
   customModelLoadModel(modelName) {
+    console.log("rentré dans custom load model");
     this.native.customModelLoadModel(modelName);
   }
 }

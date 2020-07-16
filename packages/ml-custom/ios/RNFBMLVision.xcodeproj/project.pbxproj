@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29674BC524B7078B00576BE7 /* RNFBMLCustomLoadModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 29674BC424B7078B00576BE7 /* RNFBMLCustomLoadModule.m */; };
 		8B06D3F322F84F7200A5B542 /* RNFBMLVisionLandmarkRecognizerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B06D3F222F84F7200A5B542 /* RNFBMLVisionLandmarkRecognizerModule.m */; };
 		8B06D3FC22F863AE00A5B542 /* RNFBMLVisionCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B06D3FB22F863AE00A5B542 /* RNFBMLVisionCommon.m */; };
 		8B06D40022F8748C00A5B542 /* RNFBMLVisionFaceDetectorModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B06D3FF22F8748C00A5B542 /* RNFBMLVisionFaceDetectorModule.m */; };
@@ -30,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		2744B98221F45429004F8E3F /* libRNFBMLVision.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNFBMLVision.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		29674BC324B7070300576BE7 /* RNFBMLCustomLoadModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNFBMLCustomLoadModule.h; sourceTree = "<group>"; };
+		29674BC424B7078B00576BE7 /* RNFBMLCustomLoadModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNFBMLCustomLoadModule.m; sourceTree = "<group>"; };
 		8B06D3F122F84F6500A5B542 /* RNFBMLVisionLandmarkRecognizerModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNFBMLVisionLandmarkRecognizerModule.h; sourceTree = "<group>"; };
 		8B06D3F222F84F7200A5B542 /* RNFBMLVisionLandmarkRecognizerModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNFBMLVisionLandmarkRecognizerModule.m; sourceTree = "<group>"; };
 		8B06D3FA22F863A400A5B542 /* RNFBMLVisionCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNFBMLVisionCommon.h; sourceTree = "<group>"; };
@@ -82,6 +85,8 @@
 				8B06D40D22F99DF900A5B542 /* RNFBMLVisionImageLabelerModule.m */,
 				8B06D41022F9A14B00A5B542 /* RNFBMLVisionBarcodeDetectorModule.h */,
 				8B06D41122F9A15A00A5B542 /* RNFBMLVisionBarcodeDetectorModule.m */,
+				29674BC324B7070300576BE7 /* RNFBMLCustomLoadModule.h */,
+				29674BC424B7078B00576BE7 /* RNFBMLCustomLoadModule.m */,
 			);
 			path = RNFBMLVision;
 			sourceTree = "<group>";
@@ -126,6 +131,7 @@
 				TargetAttributes = {
 					2744B98121F45429004F8E3F = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1150;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -158,6 +164,7 @@
 				8B06D40A22F989EF00A5B542 /* RNFBMLVisionTextRecognizerModule.m in Sources */,
 				8B06D3F322F84F7200A5B542 /* RNFBMLVisionLandmarkRecognizerModule.m in Sources */,
 				8B06D3FC22F863AE00A5B542 /* RNFBMLVisionCommon.m in Sources */,
+				29674BC524B7078B00576BE7 /* RNFBMLCustomLoadModule.m in Sources */,
 				8B06D40022F8748C00A5B542 /* RNFBMLVisionFaceDetectorModule.m in Sources */,
 				8B06D41222F9A15A00A5B542 /* RNFBMLVisionBarcodeDetectorModule.m in Sources */,
 			);
@@ -195,12 +202,16 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "RNFBMLVision/RNFBMLVision-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -229,12 +240,15 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "RNFBMLVision/RNFBMLVision-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
