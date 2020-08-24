@@ -75,9 +75,15 @@ const nativeModuleName = [
   'RNFBMLVisionBarcodeDetectorModule',
   'RNFBMLVisionLandmarkRecognizerModule',
   'RNFBMLVisionDocumentTextRecognizerModule',
+  'RNFBMLCustomLoadModule',
 ];
 
 class FirebaseMlKitVisionModule extends FirebaseModule {
+
+  customModelLoadModel(modelName) {
+    return this.native.customModelLoadModel(modelName);
+  }
+
   faceDetectorProcessImage(localImageFilePath, faceDetectorOptions) {
     validateOptionalNativeDependencyExists(
       'ml_vision_face_model',

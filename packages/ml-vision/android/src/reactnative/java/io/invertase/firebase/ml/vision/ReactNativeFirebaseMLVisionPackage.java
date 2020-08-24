@@ -38,6 +38,7 @@ public class ReactNativeFirebaseMLVisionPackage implements ReactPackage {
     modules.add(new RNFirebaseMLVisionTextRecognizerModule(reactContext));
     modules.add(new RNFirebaseMLVisionLandmarkRecognizerModule(reactContext));
     modules.add(new RNFirebaseMLVisionDocumentTextRecognizerModule(reactContext));
+    modules.add(new RNFirebaseMLCustomLoadModule(reactContext));
 
     if (ReactNativeFirebaseJSON
       .getSharedInstance()

@@ -1,4 +1,4 @@
-package io.invertase.firebase.ml.custom;
+package io.invertase.firebase.ml.vision;
 
 /*
  * Copyright (c) 2016-present Invertase Limited & Contributors
@@ -19,6 +19,9 @@ package io.invertase.firebase.ml.custom;
 
 
 import android.content.Context;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.FirebaseApp;
@@ -31,32 +34,57 @@ import com.google.firebase.ml.common.modeldownload.FirebaseModelManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Semaphore;
+
 class UniversalFirebaseMLCustomLoadModule extends UniversalFirebaseModule {
+
   UniversalFirebaseMLCustomLoadModule(Context context, String serviceName) {
     super(context, serviceName);
   }
 
-  Task<Void> customModelLoadModel(
+  Semaphore semaphore = new Semaphore(0);
+
+  List<Boolean> statusDownload = new ArrayList<>(1);
+
+  Task<Boolean> customModelLoadModel(
     String appName,
     String modelName
   ) {
     return Tasks.call(getExecutor(), () -> {
+
       FirebaseApp firebaseApp = FirebaseApp.getInstance(appName);
 
       FirebaseCustomRemoteModel remoteModel = new FirebaseCustomRemoteModel.Builder(modelName).build();
 
       FirebaseModelDownloadConditions conditions = new FirebaseModelDownloadConditions.Builder()
-              .requireWifi()
               .build();
 
       FirebaseModelManager.getInstance().download(remoteModel, conditions)
               .addOnCompleteListener(new OnCompleteListener<Void>() {
+                private Semaphore semaphore2 = semaphore;
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                  System.out.println("model téléchargé");
+                  statusDownload.add(true);
+                  this.semaphore2.release();
                 }
               });
-      return null;
+
+      this.semaphore.acquire();
+
+      FirebaseModelManager.getInstance().isModelDownloaded(remoteModel)
+        .addOnSuccessListener(new OnSuccessListener<Boolean>() {
+          private Semaphore semaphore2 = semaphore;
+          @Override
+          public void onSuccess(Boolean isDownloaded) {
+            statusDownload.add(isDownloaded);
+            this.semaphore2.release();
+          }
+        });
+
+      this.semaphore.acquire();
+      return statusDownload.get(0);
     });
   }
 

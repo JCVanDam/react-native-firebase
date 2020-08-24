@@ -1,4 +1,4 @@
-package io.invertase.firebase.ml.custom;
+package io.invertase.firebase.ml.vision;
 
 /*
  * Copyright (c) 2016-present Invertase Limited & Contributors
@@ -32,9 +32,17 @@ public class RNFirebaseMLCustomLoadModule extends ReactNativeFirebaseModule {
   @ReactMethod
   public void customModelLoadModel(
     String appName,
-    String modelName
+    String modelName,
+    Promise promise
   ) {
-    module.customModelLoadModel(appName, modelName);
+    module.customModelLoadModel(appName, modelName)
+      .addOnCompleteListener(getExecutor(), task -> {
+        if (task.isSuccessful()) {
+          promise.resolve(task.getResult());
+        } else {
+          promise.resolve("echec");
+        }
+      });
   }
 
 }
