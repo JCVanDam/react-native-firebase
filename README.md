@@ -33,6 +33,15 @@ React Native Firebase is built with four key principals in mind;
 - 🔥 **Mirrors official Firebase Web SDK**
   - functions as a drop-in replacement for the Firebase Web SDK in React Native
   - maximizes cross-platform code re-usability e.g. re-using code on web platforms
+## ML
+
+Pour télécharger un custom model de firebase: importer le module vision comme sur la documentation officielle
+
+Puis appeller cette fonction:
+
+const isDownloaded = await vision().customModelLoadModel("nom_du_model_firebase");
+
+isDownloaded vaut true si modèle a bien été téléchargé et false sinon
 
 ## Firebase Modules
 

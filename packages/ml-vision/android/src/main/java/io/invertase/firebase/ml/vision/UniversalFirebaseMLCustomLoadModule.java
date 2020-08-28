@@ -56,11 +56,13 @@ class UniversalFirebaseMLCustomLoadModule extends UniversalFirebaseModule {
 
       FirebaseApp firebaseApp = FirebaseApp.getInstance(appName);
 
+      // On récupere le nom du modèle distant pour le telecharger
       FirebaseCustomRemoteModel remoteModel = new FirebaseCustomRemoteModel.Builder(modelName).build();
 
       FirebaseModelDownloadConditions conditions = new FirebaseModelDownloadConditions.Builder()
               .build();
 
+      // on télécharge le modèle et on utilise des semaphores pour rendre la fonction synchrone
       FirebaseModelManager.getInstance().download(remoteModel, conditions)
               .addOnCompleteListener(new OnCompleteListener<Void>() {
                 private Semaphore semaphore2 = semaphore;
@@ -73,6 +75,7 @@ class UniversalFirebaseMLCustomLoadModule extends UniversalFirebaseModule {
 
       this.semaphore.acquire();
 
+      // une fois le téléchargement terminé on verifie que le modèle est bien téléchargé
       FirebaseModelManager.getInstance().isModelDownloaded(remoteModel)
         .addOnSuccessListener(new OnSuccessListener<Boolean>() {
           private Semaphore semaphore2 = semaphore;
@@ -84,6 +87,8 @@ class UniversalFirebaseMLCustomLoadModule extends UniversalFirebaseModule {
         });
 
       this.semaphore.acquire();
+
+      // On renvoie un boolean indiquant si le modèle a bien été téléchargé ou non
       return statusDownload.get(0);
     });
   }

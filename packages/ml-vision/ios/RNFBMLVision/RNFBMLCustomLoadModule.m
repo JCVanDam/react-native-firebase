@@ -15,11 +15,14 @@ RCT_EXPORT_MODULE();
 RCT_EXPORT_METHOD(customModelLoadModel:
   (FIRApp *) firebaseApp
     : (NSString *)modelName
+    : (RCTPromiseResolveBlock)resolve
+    : (RCTPromiseRejectBlock)reject
 ) {
-  printf("rentré load model obj-c");
+
+  // On récupere le nom du modèle et on le télécharge
 
   FIRCustomRemoteModel *remoteModel =
-    [[FIRCustomRemoteModel alloc] initWithName:@"Drug-Detector"];
+    [[FIRCustomRemoteModel alloc] initWithName:modelName];
 
   FIRModelDownloadConditions *downloadConditions =
     [[FIRModelDownloadConditions alloc] initWithAllowsCellularAccess:YES
@@ -29,8 +32,14 @@ RCT_EXPORT_METHOD(customModelLoadModel:
     [[FIRModelManager modelManager] downloadModel:remoteModel
                                              conditions:downloadConditions];
 
-  printf("fini load model obj-c");
-  return true;
+    
+    // verifie si le modèle est téléchargé ou non n'attend pas la fin du téléchargement du dessus
+    // ce props n'est pas nécessaire car sous iOS on peut faire cette verification dans React-Native-Camera comme expliqué dans la note du drive
+    if ([[FIRModelManager modelManager] isModelDownloaded:remoteModel]) {
+        resolve(@true);
+    } else {
+        resolve(@false);
+    }
 }
 
 @end
