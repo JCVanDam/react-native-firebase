@@ -60,6 +60,16 @@ yarn add @react-native-firebase/ml-vision
 - [Image Labeling](https://rnfirebase.io/ml-vision/image-labeling)
 - [Face Detection](https://rnfirebase.io/ml-vision/face-detection)
 
+## ML
+
+Pour télécharger un custom model de firebase: importer le module vision comme sur la documentation officielle
+
+Puis appeller cette fonction:
+
+const isDownloaded = await vision().customModelLoadModel("nom_du_model_firebase");
+
+isDownloaded vaut true si modèle a bien été téléchargé et false sinon
+
 
 
 ## License
