@@ -62,14 +62,13 @@ yarn add @react-native-firebase/ml-vision
 
 ## ML
 
-Pour télécharger un custom model de firebase: importer le module vision comme sur la documentation officielle
+To download a custom firebase model: import the vision module as on the official documentation
 
-Puis appeller cette fonction:
+Then call this function:
 
-const isDownloaded = await vision().customModelLoadModel("nom_du_model_firebase");
+``const isDownloaded = await vision (). customModelLoadModel ("firebase_model_name");``
 
-isDownloaded vaut true si modèle a bien été téléchargé et false sinon
-
+`isDownloaded` is true if the model has been downloaded and false otherwise
 
 
 ## License
