@@ -88,6 +88,8 @@ dependencies {
   api appProject
   implementation platform("com.google.firebase:firebase-bom:${ReactNative.ext.getVersion("firebase", "bom")}")
   implementation "com.google.firebase:firebase-ml-vision"
+  implementation 'com.google.firebase:firebase-ml-model-interpreter:22.0.3'
+
 }
 
 apply from: file("./ml-models.gradle")
